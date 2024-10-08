@@ -1,0 +1,132 @@
+#!/bin/bash
+
+# Anagnostakis Ioannis (rizitis@gmail.com) GR
+# SlackBuild and Install script for Slackware zen kernel and Headers.
+# Note: This script dont provide a binary for installation ,BUT it build AND install a zen kernel + zen headers.
+#
+   # All rights reserved 10/2024
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+   cd $(dirname "$0") ; CWD=$(pwd)
+DATE="$(date)"
+# Setup build log file
+LOGFILE="$CWD/install.log"
+rm $LOGFILE || true
+exec > >(tee -a "$LOGFILE") 2>&1
+
+echo "Starting build process..."
+start_time=$(date +%s)
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo "Error: This script should start as root!"
+  exit 1
+fi
+
+
+
+if [ -f "$CWD"/.env ]; then
+    source "$CWD"/.env
+else
+    echo ".env file not found!"
+    exit 1
+fi
+
+set -e
+
+rm -r "$MOD" || true
+
+cd "$TMP"/"$SRCNAM" || exit 
+
+install_modules () {
+make modules_install
+}
+
+install_headers(){
+cd "$TMP"/"$SRCNAM" || exit
+ rm -r "$PKG" || true
+ mkdir -p "$PKG"
+ cp -R include "$PKG"
+ mkdir -p "$PKG"/arch/x86
+ cp -R arch/x86/include "$PKG"/arch/x86/
+ mkdir -p "$PKG"/arch/x86/kernel
+ cp -a arch/x86/kernel/asm-offsets.s "$PKG"/arch/x86/kernel
+ mkdir -p "$PKG"/drivers/md
+ cp -a drivers/md/*.h "$PKG"/drivers/md
+ mkdir -p "$PKG"/net/mac80211
+ cp -a net/mac80211/*.h "$PKG"/net/mac80211/
+ mkdir -p "$PKG"/drivers/media/i2c
+ cp -a drivers/media/i2c/msp3400-driver.h "$PKG"/drivers/media/i2c/
+ mkdir -p "$PKG"/drivers/media/usb/dvb-usb
+ cp -a drivers/media/usb/dvb-usb/*.h "$PKG"/drivers/media/usb/dvb-usb
+ mkdir -p "$PKG"/drivers/media/{dvb-frontends,tuners}
+ cp -a drivers/media/dvb-frontends/*.h "$PKG"/drivers/media/dvb-frontends
+ cp -a drivers/media/tuners/*.h "$PKG"/drivers/media/tuners
+ mkdir -p "$PKG"/drivers/iio/common/hid-sensors 
+ cp -a drivers/iio/common/hid-sensors/*.h "$PKG"/drivers/iio/common/hid-sensors
+ mkdir -p "$PKG"/tools/objtool
+ cp -R tools/objtool/objtool "$PKG"/tools/objtool
+ mkdir -p "$PKG"/tools/objtool/tools/bpf/resolve_btfids
+ cp -a tools/bpf/resolve_btfids/resolve_btfids "$PKG"/tools/objtool/tools/bpf/resolve_btfids
+ cp -R scripts "$PKG"/
+ ln -srt "$PKG" "$PKG"/scripts/gdb/vmlinux-gdb.py
+ cp -a .config Makefile Module.symvers System.map vmlinux "$PKG"
+ mkdir -p "$PKG"/kernel
+ cp kernel/Makefile "$PKG"/kernel
+ mkdir -p "$PKG"/arch/x86
+ cp arch/x86/Makefile "$PKG"/arch/x86
+ find . -name 'Kconfig*' -exec install -Dm644 {} "$PKG"/{} \;
+ }
+ 
+boot_fix() {
+cp arch/x86_64/boot/bzImage /boot/vmlinuz-"$version"-"$PRGNAM"
+ cp System.map /boot/System.map-"$version"-"$PRGNAM"
+pushd / || exit
+cd /boot || exit
+ rm System.map
+ ln -s System.map-"$version"-"$PRGNAM" System.map
+}
+
+make_initrd () {
+/usr/share/mkinitrd/mkinitrd_command_generator.sh -k "$VERSION"-"$PRGNAM" > /boot/zenmkinitrd.sh
+sleep 1
+filename="zenmkinitrd.sh"
+Clear="mkinitrd -c"
+NOClear="mkinitrd"
+sed -i "s/$Clear/$NOClear/" /boot/$filename
+sleep 1
+sh $filename
+}
+
+grub_upd () {
+popd || exit
+grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+
+install_modules
+install_headers
+boot_fix
+make_initrd
+grub_upd
+
+
+# Calculate and display build time
+end_time=$(date +%s)
+elapsed_time=$((end_time - start_time))
+echo "Build process completed in $((elapsed_time / 60)) minutes and $((elapsed_time % 60)) seconds."
