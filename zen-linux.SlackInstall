@@ -93,7 +93,7 @@ cd "$TMP"/"$SRCNAM" || exit
  find . -name 'Kconfig*' -exec install -Dm644 {} "$PKG"/{} \;
  }
  
-boot_fix() {
+kernel_inst () {
 cp arch/x86_64/boot/bzImage /boot/vmlinuz-"$VERSION"-"$PRGNAM"
  cp System.map /boot/System.map-"$VERSION"-"$PRGNAM"
 pushd / || exit
@@ -121,7 +121,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 install_modules
 install_headers
-boot_fix
+kernel_inst
 make_initrd
 grub_upd
 
