@@ -17,7 +17,7 @@ This is not a regular SlackBuild. `slack-desc` does not included  and a binary o
 
 2. **zen-linux.SlackInstall** will install zen kernel-zen modules and zen headers in your system. Also it will upgrade grub and create an initrd.gz <br>
 If you dont use grub or initrd.gz etc... you can modify fuctions in script...<br>
-- *the way zen kernel build and install slackpkg upgrade-all will not remove it on next stock kernel upgrade.*
+- *the way zen kernel is builded and installed, slackpkg upgrade-all will not remove it on next stock kernel upgrade.*
 
 ---
 
