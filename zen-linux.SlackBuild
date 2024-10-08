@@ -42,7 +42,7 @@ echo "PRGNAM=$PRGNAM" >> "$CWD"/.env
 # If not special SRCNAM needed then we use the same name as PRGNAM.
 SRCNAM=zen-kernel
 echo "SRCNAM=$SRCNAM" >> "$CWD"/.env
-# Download link if use AUTO_UPD then SRCmust be empty
+# Download link 
 SRCURL=https://github.com/zen-kernel/zen-kernel.git
 COMPRESS="git"
 # IF you need:git checkout, else leave it empty.
