@@ -94,12 +94,12 @@ cd "$TMP"/"$SRCNAM" || exit
  }
  
 boot_fix() {
-cp arch/x86_64/boot/bzImage /boot/vmlinuz-"$version"-"$PRGNAM"
- cp System.map /boot/System.map-"$version"-"$PRGNAM"
+cp arch/x86_64/boot/bzImage /boot/vmlinuz-"$VERSION"-"$PRGNAM"
+ cp System.map /boot/System.map-"$VERSION"-"$PRGNAM"
 pushd / || exit
 cd /boot || exit
  rm System.map
- ln -s System.map-"$version"-"$PRGNAM" System.map
+ ln -s System.map-"$VERSION"-"$PRGNAM" System.map
 }
 
 make_initrd () {
