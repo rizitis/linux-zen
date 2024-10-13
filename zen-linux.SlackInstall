@@ -51,7 +51,7 @@ set -e
 
 rm -r "$MOD" || true
 
-cd "$TMP"/"$SRCNAM" || exit 
+cd "$TMP"/"$SRCNAM" || exit
 
 install_modules () {
 make modules_install
@@ -77,7 +77,7 @@ cd "$TMP"/"$SRCNAM" || exit
  mkdir -p "$PKG"/drivers/media/{dvb-frontends,tuners}
  cp -a drivers/media/dvb-frontends/*.h "$PKG"/drivers/media/dvb-frontends
  cp -a drivers/media/tuners/*.h "$PKG"/drivers/media/tuners
- mkdir -p "$PKG"/drivers/iio/common/hid-sensors 
+ mkdir -p "$PKG"/drivers/iio/common/hid-sensors
  cp -a drivers/iio/common/hid-sensors/*.h "$PKG"/drivers/iio/common/hid-sensors
  mkdir -p "$PKG"/tools/objtool
  cp -R tools/objtool/objtool "$PKG"/tools/objtool
@@ -92,7 +92,7 @@ cd "$TMP"/"$SRCNAM" || exit
  cp arch/x86/Makefile "$PKG"/arch/x86
  find . -name 'Kconfig*' -exec install -Dm644 {} "$PKG"/{} \;
  }
- 
+
 kernel_inst () {
 cp arch/x86_64/boot/bzImage /boot/vmlinuz-"$VERSION"-"$PRGNAM"
  cp System.map /boot/System.map-"$VERSION"-"$PRGNAM"
@@ -103,14 +103,7 @@ cd /boot || exit
 }
 
 make_initrd () {
-/usr/share/mkinitrd/mkinitrd_command_generator.sh -k "$VERSION"-"$PRGNAM" > /boot/zenmkinitrd.sh
-sleep 1
-filename="zenmkinitrd.sh"
-Clear="mkinitrd -c"
-NOClear="mkinitrd"
-sed -i "s/$Clear/$NOClear/" /boot/$filename
-sleep 1
-sh $filename
+dracut --kver "$VERSION"-"$PRGNAM" /boot/initramfs-"$VERSION"-"$PRGNAM".img
 }
 
 grub_upd () {
