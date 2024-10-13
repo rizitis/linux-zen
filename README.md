@@ -5,9 +5,12 @@ This is not a regular SlackBuild. `slack-desc` does not included  and a binary o
 ---
 
 >
-> Zen kernels must **NOT** builded in `/usr/src` or `/tmp` etc... 
+> Zen kernels must **NOT** builded in `/usr/src` or `/tmp` etc...
+>
 > The best place is away from root (/) , the pefrect place is `/home/$USER/WorkDir`
+>
 > zen-linux.SlackBuild must executed as regular user, NOT AS ROOT, and when its time for installation in will ask for root passwd. (su)
+>
 > so all building will be in your user's /home.
 
 ### HOWTO
