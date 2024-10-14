@@ -56,19 +56,3 @@ Do not touch this^^ but feel free to remove HARDWARE drivers you dont need.
 
 
 ---
-### Attention
-
-Its **not recomended** to run a zen kernel for Intel cpu, errors like this will appear:
-```
-0.349305] ACPI: Skipping parse of AML opcode: OpcodeName unavailable (0x0014)
-[    0.349346] ACPI BIOS Error (bug): Failure creating named object [\_SB.PC00.XHCI.RHUB.HS07._UPC], AE_ALREADY_EXISTS (20240322/dswload2-326)
-[    0.349353] ACPI Error: AE_ALREADY_EXISTS, During name lookup/catalog (20240322/psobject-220)
-```
-```
-[    6.066994] proc_thermal_pci 0000:00:04.0: error: proc_thermal_add, will continue
-```
-```
-[    6.673855] usbhid 3-2:1.2: couldn't find an input interrupt endpoint
-```
-System will be very unstable. system={hardware,software}
-Build a generic kernel with Slackware stock config plus [this](https://github.com/rizitis/linux-zen/tree/main#zen-config) for Wayndorid etc...
