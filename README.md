@@ -19,8 +19,8 @@ Use it at your own risk... no one will support you if your system break.
 1. Only ran **zen-linux.SlackBuild** to build a complete zen kernel-modules and zen headers.
    - *Ran it as regular user (no root).*
 
-2. **zen-linux.SlackInstall** will install zen kernel-zen modules and zen headers in your system. Also it will upgrade grub and create an initrd.gz <br>
-If you dont use grub or initrd.gz etc... you can modify fuctions in script...<br>
+2. **zen-linux.SlackInstall** will install zen kernel-zen modules and zen headers in your system. Also it will upgrade grub and create an initrd.img <br>
+If you dont use grub or dracut... you can modify fuctions in script...<br>
 - *the way zen kernel is builded and installed, slackpkg upgrade-all will not remove it on next stock kernel upgrade.*
 
 ---
