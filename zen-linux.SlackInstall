@@ -103,7 +103,7 @@ cd /boot || exit
 }
 
 make_initrd () {
-dracut --kver "$VERSION"-"$PRGNAM" /boot/initramfs-"$VERSION"-"$PRGNAM".img
+dracut --omit ostree --kver "$VERSION"-"$PRGNAM" /boot/initramfs-"$VERSION"-"$PRGNAM".img
 }
 
 grub_upd () {

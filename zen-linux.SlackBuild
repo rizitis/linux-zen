@@ -35,7 +35,7 @@ start_time=$(date +%s)
 > "$CWD"/.env
 
 
-VERSION=6.11.3
+VERSION=6.15.9
 echo "VERSION=$VERSION" >> "$CWD"/.env
 PRGNAM="zen+"
 echo "PRGNAM=$PRGNAM" >> "$CWD"/.env
@@ -46,7 +46,7 @@ echo "SRCNAM=$SRCNAM" >> "$CWD"/.env
 SRCURL=https://github.com/zen-kernel/zen-kernel.git
 COMPRESS="git"
 # IF you need:git checkout, else leave it empty.
-GITCHEK=afade16a193faf08d100d52c254bb5c6c5605b8c
+GITCHEK=a870ab921ac970afcbcaa782dfce98278437a638
 
 MOD=/lib/modules/"$VERSION"-"$PRGNAM"
 echo "MOD=$MOD" >> "$CWD"/.env
@@ -112,6 +112,7 @@ if [ -z "$ARCH" ]; then
   echo "Error: ARCH variable is not set. Please set it to the target architecture."
   exit 1
 fi
+
 
 # Set compiler flags based on architecture for musl/GCC
 case "$ARCH" in

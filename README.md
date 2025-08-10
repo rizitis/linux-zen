@@ -1,7 +1,8 @@
 # zen Slackware
 
 This is not a regular SlackBuild. `slack-desc` does not included  and a binary output `t?z` for installation is **not** provided.
-
+Scripts are for **x86_64 arch** and **Slackware-current**.
+Use it at your own risk... no one will support you if your system break.
 ---
 
 >
