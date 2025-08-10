@@ -48,6 +48,9 @@ Also if you modify **zen-linux.SlackInstall** do not remove it from `$CWD` becau
 
 zen .config is the stock Slackware-current config plus:
 ```
+#CONFIG_PREEMPT_VOLUNTARY
+CONFIG_PREEMPT=y
+#CONFIG_DEBUG_PREEMPT
 CONFIG_ANDROID=y
 CONFIG_ANDROID_BINDER_IPC=y
 CONFIG_ANDROID_BINDERFS=n
