@@ -52,24 +52,25 @@ zen .config is the stock Slackware-current config plus:
 CONFIG_IPV6_MROUTE=y
 CONFIG_IPV6_IOAM6_LWTUNNEL=y
 CONFIG_IP_VS_IPV6=m
-
 CONFIG_IPV6_SIT_6RD=m
 CONFIG_IPV6_ROUTER_PREF=y
 CONFIG_IPV6_OPTIMISTIC_DAD=y
-#CONFIG_PREEMPT_VOLUNTARY
 CONFIG_PREEMPT=y
-#CONFIG_DEBUG_PREEMPT
 CONFIG_ANDROID=y
 CONFIG_ANDROID_BINDER_IPC=y
 CONFIG_ANDROID_BINDERFS=n
-CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder" 
+CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder"
+
+#CONFIG_PREEMPT_VOLUNTARY
+#CONFIG_DEBUG_PREEMPT
 ``` 
 Do not touch this^^ but feel free to remove HARDWARE drivers you dont need. <br>
 
 `/etc/udev/rules.d/99-hwrng-symlink.rules` needed, we have /dev/hwrng but waydroid want /dev/hw_random :D<br>
 
 If you place it after reboot then cmd:
-```sudo udevadm control --reload-rules
+```
+sudo udevadm control --reload-rules
 sudo udevadm trigger /dev/hwrng
 ```
 
