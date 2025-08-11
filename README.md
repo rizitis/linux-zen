@@ -38,8 +38,9 @@ Also if you modify **zen-linux.SlackInstall** do not remove it from `$CWD` becau
 
 #### TIPS
 *the way zen slackware kernel is builded you can:*
-- install NVIDIA driver
+- install NVIDIA driver ;)
 - run Waydroid
+- have a litle faster compiling 
 - and more good things...
 
 ---
@@ -48,6 +49,13 @@ Also if you modify **zen-linux.SlackInstall** do not remove it from `$CWD` becau
 
 zen .config is the stock Slackware-current config plus:
 ```
+CONFIG_IPV6_MROUTE=y
+CONFIG_IPV6_IOAM6_LWTUNNEL=y
+CONFIG_IP_VS_IPV6=m
+
+CONFIG_IPV6_SIT_6RD=m
+CONFIG_IPV6_ROUTER_PREF=y
+CONFIG_IPV6_OPTIMISTIC_DAD=y
 #CONFIG_PREEMPT_VOLUNTARY
 CONFIG_PREEMPT=y
 #CONFIG_DEBUG_PREEMPT
@@ -56,7 +64,13 @@ CONFIG_ANDROID_BINDER_IPC=y
 CONFIG_ANDROID_BINDERFS=n
 CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder" 
 ``` 
-Do not touch this^^ but feel free to remove HARDWARE drivers you dont need.
+Do not touch this^^ but feel free to remove HARDWARE drivers you dont need. <br>
 
+`/etc/udev/rules.d/99-hwrng-symlink.rules` needed, we have /dev/hwrng but waydroid want /dev/hw_random :D<br>
+
+If you place it after reboot then cmd:
+```sudo udevadm control --reload-rules
+sudo udevadm trigger /dev/hwrng
+```
 
 ---

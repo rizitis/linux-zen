@@ -5091,7 +5091,7 @@ dracut[I]: *** Including module: virtiofs ***
 dracut[I]: *** Including module: initqueue ***
 dracut[I]: *** Including module: usrmount ***
 dracut[I]: *** Including module: base ***
-grep: /var/tmp/dracut.dwkcyeN/initramfs/etc/shadow: No such file or directory
+grep: /var/tmp/dracut.dUzAUEC/initramfs/etc/shadow: No such file or directory
 dracut[I]: *** Including module: shell-interpreter ***
 dracut[I]: *** Including module: shutdown ***
 dracut[I]: *** Including modules done ***
@@ -5128,4 +5128,4 @@ Its output will be used to detect bootable binaries on them and create new boot 
 Found Slackware 15.0 x86_64 (post 15.0 -current) on /dev/nvme0n1p2
 Adding boot menu entry for UEFI Firmware Settings ...
 done
-Build process completed in 1 minutes and 9 seconds.
+Build process completed in 1 minutes and 13 seconds.
