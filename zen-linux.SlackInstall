@@ -30,7 +30,7 @@ LOGFILE="$CWD/install.log"
 rm $LOGFILE || true
 exec > >(tee -a "$LOGFILE") 2>&1
 
-echo "Starting build process..."
+echo "Starting install process..."
 start_time=$(date +%s)
 
 if [ "$(id -u)" -ne 0 ]; then
