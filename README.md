@@ -40,8 +40,12 @@ Also if you modify **zen-linux.SlackInstall** do not remove it from `$CWD` becau
 *the way zen slackware kernel is builded you can:*
 - install NVIDIA driver ;)
 - run Waydroid
-- have a litle faster compiling 
+- have a faster compiling time
+- Better gaming
 - and more good things...
+
+1. Reduces scheduling latency from kernel-to-user space.
+2. Main effect: snappier responsiveness, less input lag, better audio/video stability.
 
 ---
 
