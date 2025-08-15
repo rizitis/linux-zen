@@ -75,3 +75,11 @@ sudo udevadm trigger /dev/hwrng
 ```
 
 ---
+
+### benchmark-latency-test
+
+You might want to READ and ran the benchmark-latency-test.sh<br>
+Please READ it first... 
+
+---
+
