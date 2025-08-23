@@ -83,7 +83,7 @@ sudo udevadm trigger /dev/hwrng
 ### benchmark-latency-test
 
 You might want to READ and ran the benchmark-latency-test.sh<br>
-Or the precompiled rt-tests.tar.gz from `https://github.com/jlelli/rt-tests` <br> because this kernel is almost a real time kernel too! ;)
+Or the precompiled rt-tests.tar.gz (required: numactl)from `https://github.com/jlelli/rt-tests` <br> because this kernel is almost a real time kernel too! ;)
 ```
 sudo taskset -c 0-3 ./cyclictest -a -t -n -p99
 # /dev/cpu_dma_latency set to 0us
