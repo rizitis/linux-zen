@@ -69,7 +69,7 @@ set -e
 NUM_THREADS=$(nproc)
 echo "Detected $NUM_THREADS logical CPUs/threads."
 
-LOG_DIR="./latency_logs"
+LOG_DIR="latency_logs"
 mkdir -p "$LOG_DIR"
 
 measure_latency() {
@@ -143,5 +143,4 @@ rm "$GNUPLOT_SCRIPT"
 echo "Smooth curves plot with shaded deviation saved to $PLOT_FILE"
 
 
-xdg-open "$LOG_DIR/latency_plot.png" 2>/dev/null
-
+xdg-open "$LOG_DIR"/latency_plot_shaded.png
