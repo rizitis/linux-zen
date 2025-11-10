@@ -35,8 +35,8 @@ start_time=$(date +%s)
 > "$CWD"/.env
 
 
-VERSION=6.16.3
-BRANCH="6.16/main"
+VERSION=6.17.7
+BRANCH="6.17/main"
 echo "VERSION=$VERSION" >> "$CWD"/.env
 PRGNAM="zen+"
 echo "PRGNAM=$PRGNAM" >> "$CWD"/.env
@@ -47,7 +47,7 @@ echo "SRCNAM=$SRCNAM" >> "$CWD"/.env
 SRCURL=https://github.com/zen-kernel/zen-kernel.git
 COMPRESS="git"
 # IF you need:git checkout, else leave it empty.
-GITCHEK=f0895db2fb346439d16c65c6f8eb567a4b651ba3
+GITCHEK=422dcbbde97affce16e4d1ef363f8244698d5c1c
 
 MOD=/lib/modules/"$VERSION"-"$PRGNAM"
 echo "MOD=$MOD" >> "$CWD"/.env
