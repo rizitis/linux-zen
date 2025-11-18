@@ -35,7 +35,7 @@ start_time=$(date +%s)
 > "$CWD"/.env
 
 
-VERSION=6.17.7
+VERSION=6.17.8
 BRANCH="6.17/main"
 echo "VERSION=$VERSION" >> "$CWD"/.env
 PRGNAM="zen+"
