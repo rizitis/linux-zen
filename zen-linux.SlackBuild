@@ -47,7 +47,7 @@ echo "SRCNAM=$SRCNAM" >> "$CWD"/.env
 SRCURL=https://github.com/zen-kernel/zen-kernel.git
 COMPRESS="git"
 # IF you need:git checkout, else leave it empty.
-GITCHEK=422dcbbde97affce16e4d1ef363f8244698d5c1c
+GITCHEK=8dfc3a35587c029435f37490401e1e3336d2cc64
 
 MOD=/lib/modules/"$VERSION"-"$PRGNAM"
 echo "MOD=$MOD" >> "$CWD"/.env
