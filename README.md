@@ -16,8 +16,11 @@ Use it at your own risk... no one will support you if your system break.
 
 ### HOWTO
 
+0. `git clone https://github.com/rizitis/linux-zen.git`
+
 1. Only ran **zen-linux.SlackBuild** to build a complete zen kernel-modules and zen headers.
    - *Ran it as regular user (no root).*
+   - `bash zen-linux.SlackBuild`
 
 2. **zen-linux.SlackInstall** will install zen kernel-zen modules and zen headers in your system. Also it will upgrade grub and create an initrd.img <br>
 If you dont use grub or dracut... you can modify fuctions in script...<br>
